@@ -23,7 +23,7 @@ contract DSExec {
              returns (bool ok)
     {
         assembly {
-            ok := call(gas, target, value, add(data, 0x20), mload(data), 0, 0)
+            ok := call(gas(), target, value, add(data, 0x20), mload(data), 0, 0)
         }
     }
     function exec( address target, bytes memory data, uint value)

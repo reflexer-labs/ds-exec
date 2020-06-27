@@ -34,7 +34,7 @@ contract DSSimpleActor is DSExec {
         return tryExec(target, data, value);
     }
 
-    function() external payable {}
+    fallback() external payable {}
 }
 
 
@@ -55,7 +55,7 @@ contract CallReceiver {
         }
         return true;
     }
-    function() external payable {
+    fallback() external payable {
         last_calldata = msg.data;
         last_value = msg.value;
     }
@@ -68,7 +68,7 @@ contract DSExecTest is DSTest {
     CallReceiver cr;
     function setUp() public {
         assert(address(this).balance > 0);
-        
+
         a = new DSSimpleActor();
         if (!address(a).send(10 wei)) revert();
 
